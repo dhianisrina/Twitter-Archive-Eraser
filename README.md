@@ -6,7 +6,7 @@ Remove the oldest tweets from your account using Twitter Archive Eraser, a .NET 
 Download executable
 -------------------
 
-You can download a working version from here: [Twitter Archive Eraser.zip](Twitter%20Archive%20Eraser.zip)
+You can download a working version from here: [Twitter Archive Eraser.zip](Twitter%20Archive%20Eraser.zip?raw=true)
 
 Building the code using Visual Studio
 ----------------------------
