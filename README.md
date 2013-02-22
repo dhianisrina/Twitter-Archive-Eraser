@@ -1,7 +1,9 @@
 Twitter Archive Eraser
 ======================
 
-Remove the oldest tweets from your account using Twitter Archive Eraser, a .NET app for bulk tweets deletion using the Twitter archive.
+Delete the oldest tweets from your Twitter account using Twitter Archive Eraser, a .NET app for bulk tweets deletion using the Twitter archive.
+
+More details about how to use this tool to wipe out your Twitter archive [http://www.martani.net/2013/02/wipe-your-oldest-tweets-using-twitter.html](http://www.martani.net/2013/02/wipe-your-oldest-tweets-using-twitter.html)
 
 Download executable
 -------------------
