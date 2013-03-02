@@ -23,7 +23,7 @@ namespace Twitter_Archive_Eraser
         /// </summary> 
         public void AddRange(IEnumerable<T> collection)
         {
-            if (collection == null) throw new ArgumentNullException("collection");
+            if (collection == null) return; // throw new ArgumentNullException("collection");
 
             foreach (var i in collection) Items.Add(i);
             OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, collection.ToList()));

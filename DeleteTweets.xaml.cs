@@ -61,21 +61,34 @@ namespace Twitter_Archive_Eraser
             if (!File.Exists(filePath))
                 return null;
 
-            string jsonData = File.ReadAllText(filePath);
-            jsonData = jsonData.Substring(jsonData.IndexOf('[') == 0 ? 0 : jsonData.IndexOf('[') - 1); 
-            List<tweetTJson> tweets = JsonConvert.DeserializeObject<List<tweetTJson>>(jsonData);
+            List<tweetTJson> tweets = null;
+
+            try
+            {
+                string jsonData = File.ReadAllText(filePath);
+                jsonData = jsonData.Substring(jsonData.IndexOf('[') <= 0 ? 0 : jsonData.IndexOf('[') - 1); 
+                tweets = JsonConvert.DeserializeObject<List<tweetTJson>>(jsonData);
+            }
+            catch (Exception)   //file is not a suitable json
+            {
+                
+            }
+
+            if (tweets == null)
+                return null;
 
             string datePattern = "ddd MMM dd H:m:s zzz yyyy";
 
-            return tweets.Select(tJson => new Tweet
-                                                {
-                                                    ID = tJson.id_str,
-                                                    Text = tJson.text,
-                                                    ToErase = true,
-                                                    Date = DateTimeOffset.ParseExact(tJson.created_at, datePattern, null).DateTime,
-                                                    Status = ""
-                                                })
-                                                .ToList();
+            return tweets.Where(tJson => tJson.created_at != null && tJson.id_str != null && tJson.text != null)
+                         .Select(tJson => new Tweet
+                                        {
+                                            ID = tJson.id_str,
+                                            Text = tJson.text,
+                                            ToErase = true,
+                                            Date = DateTimeOffset.ParseExact(tJson.created_at, datePattern, null).DateTime,
+                                            Status = ""
+                                        })
+                        .ToList();
         }
 
         List<Tweet> GetTweetsFromCsvFile(string filePath)
