@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Navigation;
+using System.Globalization;
 
 namespace Twitter_Archive_Eraser
 {
@@ -30,7 +31,13 @@ namespace Twitter_Archive_Eraser
         public DeleteTweets()
         {
             InitializeComponent();
+            this.Loaded += DeleteTweets_Loaded;
             LoadTweets();
+        }
+
+        void DeleteTweets_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("es-PE"); 
         }
 
         private void LoadTweets()
@@ -85,10 +92,12 @@ namespace Twitter_Archive_Eraser
                                             ID = tJson.id_str,
                                             Text = tJson.text,
                                             ToErase = true,
-                                            Date = DateTimeOffset.ParseExact(tJson.created_at, datePattern, null).DateTime,
+                                            Date = DateTimeOffset.ParseExact(tJson.created_at, datePattern, CultureInfo.InvariantCulture).DateTime,
                                             Status = ""
                                         })
                         .ToList();
+
+            
         }
 
         List<Tweet> GetTweetsFromCsvFile(string filePath)
@@ -104,7 +113,7 @@ namespace Twitter_Archive_Eraser
                                             ID = line.Split(new char[] { ',' })[0].Replace("\"", ""),
                                             Text = line.Split(new char[] { ',' })[7].Replace("\"", ""),
                                             ToErase = true,
-                                            Date = DateTime.Parse(line.Split(new char[] { ',' })[5].Replace("\"", "")),
+                                            Date = DateTime.Parse(line.Split(new char[] { ',' })[5].Replace("\"", ""), CultureInfo.InvariantCulture),
                                             Status = ""
                                         })
                         .ToList();
