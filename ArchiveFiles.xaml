@@ -1,11 +1,11 @@
 ﻿<Window x:Class="Twitter_Archive_Eraser.ArchiveFiles"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Select Archive Files" Height="570.975" Width="761.09" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        Title="Select Archive Files" Height="615.751" Width="761.09" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
         Closed="Window_Closed_1">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="196"/>
+            <RowDefinition Height="226"/>
             <RowDefinition/>
             <RowDefinition Height="60"/>
             <RowDefinition Height="30"/>
@@ -24,8 +24,9 @@
                 <StackPanel Orientation="Horizontal" Margin="20 0">
                     <TextBlock FontSize="18">• The files are located in</TextBlock>
                     <TextBlock FontSize="18" FontStyle="Italic" Margin="5 0 0 0"> [Your twitter archive path]</TextBlock>
-                    <TextBlock FontSize="18">\data\csv.</TextBlock>
+                    <TextBlock FontSize="18">data\js\tweets.</TextBlock>
                 </StackPanel>
+                <TextBlock FontSize="18" Margin="50 0 0 0">For example, the file "2013_01.js" contains all the tweets of January 2013.</TextBlock>
             </StackPanel>
             <StackPanel Margin="0" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Name="btnAddFiles" Width="140" FontSize="18" Click="btnAddFiles_Click">Add files</Button>

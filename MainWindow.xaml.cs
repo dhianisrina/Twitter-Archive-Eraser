@@ -105,6 +105,7 @@ namespace Twitter_Archive_Eraser
 
         private void btnAuthorize_Click(object sender, RoutedEventArgs e)
         {
+            e.Handled = true;
             ITwitterAuthorizer auth = PerformAuthorization();
 
             if (auth == null)
@@ -122,6 +123,7 @@ namespace Twitter_Archive_Eraser
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
+            e.Handled = true;
             ArchiveFiles page = new ArchiveFiles();
             this.Hide();
             page.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;

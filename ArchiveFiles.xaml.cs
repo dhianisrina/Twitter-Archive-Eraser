@@ -32,9 +32,10 @@ namespace Twitter_Archive_Eraser
 
         private void btnAddFiles_Click(object sender, RoutedEventArgs e)
         {
+            e.Handled = true;
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.DefaultExt = ".csv";
-            dlg.Filter = "CSV files (*.csv)|*.csv";
+            dlg.DefaultExt = ".js";
+            dlg.Filter = "JS archive files (*.js)|*.js|CSV archive files (*.csv)|*.csv";
             dlg.Multiselect = true;
 
             Nullable<bool> result = dlg.ShowDialog();
@@ -54,6 +55,7 @@ namespace Twitter_Archive_Eraser
 
         private void btnRemoveFiles_Click(object sender, RoutedEventArgs e)
         {
+            e.Handled = true;
             List<CsvFile> selectedFiles = new List<CsvFile>();
             foreach (var item in csvFiles)
             {
@@ -69,6 +71,7 @@ namespace Twitter_Archive_Eraser
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
+            e.Handled = true;
             if (csvFiles.Count == 0)
             {
                 MessageBox.Show("Please select at least 1 csv file from the twitter archive", 

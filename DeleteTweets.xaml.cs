@@ -8,17 +8,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+
+using Newtonsoft.Json;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Twitter_Archive_Eraser
 {
@@ -45,23 +39,63 @@ namespace Twitter_Archive_Eraser
 
             foreach (string file in csvFiles)
             {
-                tweets.AddRange(File.ReadAllLines(file)
-                                .Skip(1)   //skip header
-                                .Where(line => line.Count(c => c == ',') >= 7) //line must have all CSV entries
-                                .Select(line => new Tweet
-                                                {
-                                                    ID = line.Split(new char[] { ',' })[0].Replace("\"", ""),
-                                                    Text = line.Split(new char[] { ',' })[7].Replace("\"", ""),
-                                                    ToErase = true,
-                                                    Date = DateTime.Parse(line.Split(new char[] { ',' })[5].Replace("\"", "")),
-                                                    Status = ""
-                                                })
-                                .ToList());
+                if (file.EndsWith(".js"))
+                    tweets.AddRange(GetTweetsFromJsFile(file));
+
+                if(file.EndsWith(".csv"))
+                    tweets.AddRange(GetTweetsFromCsvFile(file));
             }
 
             gridTweets.ItemsSource = tweets;
         }
 
+        class tweetTJson
+        {
+            public string id_str { get; set; }
+            public string text { get; set; }
+            public string created_at { get; set; }
+        }
+
+        List<Tweet> GetTweetsFromJsFile(string filePath)
+        {
+            if (!File.Exists(filePath))
+                return null;
+
+            string jsonData = File.ReadAllText(filePath);
+            jsonData = jsonData.Substring(jsonData.IndexOf('[') == 0 ? 0 : jsonData.IndexOf('[') - 1); 
+            List<tweetTJson> tweets = JsonConvert.DeserializeObject<List<tweetTJson>>(jsonData);
+
+            string datePattern = "ddd MMM dd H:m:s zzz yyyy";
+
+            return tweets.Select(tJson => new Tweet
+                                                {
+                                                    ID = tJson.id_str,
+                                                    Text = tJson.text,
+                                                    ToErase = true,
+                                                    Date = DateTimeOffset.ParseExact(tJson.created_at, datePattern, null).DateTime,
+                                                    Status = ""
+                                                })
+                                                .ToList();
+        }
+
+        List<Tweet> GetTweetsFromCsvFile(string filePath)
+        {
+            if (!File.Exists(filePath))
+                return null;
+
+            return File.ReadAllLines(filePath)
+                        .Skip(1)   //skip header
+                        .Where(line => line.Count(c => c == ',') >= 7) //line must have all CSV entries
+                        .Select(line => new Tweet
+                                        {
+                                            ID = line.Split(new char[] { ',' })[0].Replace("\"", ""),
+                                            Text = line.Split(new char[] { ',' })[7].Replace("\"", ""),
+                                            ToErase = true,
+                                            Date = DateTime.Parse(line.Split(new char[] { ',' })[5].Replace("\"", "")),
+                                            Status = ""
+                                        })
+                        .ToList();
+        }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -96,6 +130,7 @@ namespace Twitter_Archive_Eraser
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            e.Handled = true;
             hitReturn = true;
             this.Close();
         }
@@ -110,6 +145,7 @@ namespace Twitter_Archive_Eraser
 
         private void btnEraseTweets_Click(object sender, RoutedEventArgs e)
         {
+            e.Handled = true;
             if (MessageBox.Show("Are you sure you want to delete all the selected tweets.\nThis cannot be undone!", "Twitter Archive Eraser", 
                                 MessageBoxButton.OKCancel, MessageBoxImage.Warning)
                 == MessageBoxResult.OK)
@@ -183,7 +219,7 @@ namespace Twitter_Archive_Eraser
                 btnEraseTweets.IsEnabled = true;
                 btnBack.IsEnabled = true;
 
-                MessageBox.Show("Done! Everything is clear ;).\n", "Twitter Archive Eraser", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Done! Everything is clean ;).\n", "Twitter Archive Eraser", MessageBoxButton.OK, MessageBoxImage.Information);
             }));
         }
 
