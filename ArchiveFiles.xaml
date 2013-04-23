@@ -24,7 +24,7 @@
                 <StackPanel Orientation="Horizontal" Margin="20 0">
                     <TextBlock FontSize="18">• The files are located in</TextBlock>
                     <TextBlock FontSize="18" FontStyle="Italic" Margin="5 0 0 0"> [Your twitter archive path]</TextBlock>
-                    <TextBlock FontSize="18">data\js\tweets.</TextBlock>
+                    <TextBlock FontSize="18" FontWeight="Bold">\data\js\tweets.</TextBlock>
                 </StackPanel>
                 <TextBlock FontSize="18" Margin="50 0 0 0">For example, the file "2013_01.js" contains all the tweets of January 2013.</TextBlock>
             </StackPanel>
