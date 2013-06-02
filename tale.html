@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Twitter Archive Eraser by martani</title>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <a href="http://martani.github.io/Twitter-Archive-Eraser"><h1>Twitter Archive Eraser</h1></a>
+        <p>Delete Your Oldest Tweets Using Twitter Archive Eraser</p>
+
+        <a href="http://martani.github.io/Twitter-Archive-Eraser/#disqus_thread"></a>
+        
+        <p>
+            <a href="faq.html"><b>FAQ</b></a>
+            <br>
+            <a href="tale.html"><b>The Tale</b></a>
+        </p>
+
+        <p class="view"><a href="https://github.com/martani/Twitter-Archive-Eraser">View the Project on GitHub <small>martani/Twitter-Archive-Eraser</small></a></p>
+
+
+        <ul>
+          <li><a href="http://bit.ly/TwitterArchiveEraser">Download <strong>Standalone</strong> version</a></li>
+          <li><a href="http://bit.ly/TwitterArchiveEraserSetup">Download <strong>Installer</strong></a></li>
+          <li><a href="https://github.com/martani/Twitter-Archive-Eraser">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+
+
+<h1><a name="twitter-archive-eraser" class="anchor" href="#twitter-archive-eraser"><span class="octicon octicon-link"></span></a>Twitter Archive Eraser Tale</h1>
+<p>Until very recently (<i>posted on WEDNESDAY, FEBRUARY 13, 2013</i>), there was no obvious way to access your old tweets. In fact Twitter imposes a limit of 3200 tweets (the more recent ones that is) that an application can access.</p>
+<p>This means also that you cannot delete your old tweets. Several tools exist to help you delete your old tweets but, according to my experiments, most of them do not work properly, if at all, due to Twitter API's limitations.</p>
+
+<p>Last week however, Twitter enabled the option for users to download their whole archive of tweets, which contains among other things the IDs of all the tweets of a user: the exact piece of information that can be used to wipe out any tweet.</p>
+
+<p>I have developed a simple application called "<b>Twitter Archive Eraser</b>" that helps you delete the oldest tweets from your timeline, or wipe out the whole archive too if you would like so.</p>
+
+<p>The application is the simplest possible, it works in 3 steps: authenticate Twitter; select which tweets you want to delete; wipe them out.</p>
+
+
+    <!-- LOAD DISQUS WHEN USER SCROLLS DOWN -->
+    
+    <div id="disqus_thread" data-disqus-shortname="martani-net" data-disqus-url="http://martani.github.io/Twitter-Archive-Eraser/"></div>
+    
+    <script type="text/javascript">
+    $(function(){
+    var disqus_div = $("#disqus_thread");
+    if (disqus_div.size() > 0 ) {
+        var ds_loaded = false,
+            top = disqus_div.offset().top, // WHERE TO START LOADING
+            disqus_data = disqus_div.data(),
+            check = function(){
+                if ( !ds_loaded && $(window).scrollTop() + $(window).height() > top ) {
+                    ds_loaded = true;
+                    for (var key in disqus_data) {
+                        if (key.substr(0,6) == 'disqus') {
+                            window['disqus_' + key.replace('disqus','').toLowerCase()] = disqus_data[key];
+                        }
+                    }
+ 
+                    var dsq = document.createElement('script'); 
+                    dsq.type = 'text/javascript';
+                    dsq.async = true;
+                    dsq.src = 'http://' + window.disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                }
+            };
+ 
+        $(window).scroll(check);
+        check();
+        }
+      });
+      </script>
+
+
+      </section>  
+    
+      
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/martani">martani</a></p>
+        <p>
+            <img src="https://abs.twimg.com/a/1369885592/images/resources/twitter-bird-light-bgs.png" width="48">
+            <a href="https://twitter.com/martani_net">@martani_net</a>
+        </p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+    
+        <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'martani-net'; // required: replace example with your forum shortname
+    //var disqus_url = 'http://www.martani.net/2013/02/wipe-your-oldest-tweets-using-twitter.html';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+    
+    
+  </body>
+</html>

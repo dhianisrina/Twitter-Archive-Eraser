@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Twitter Archive Eraser by martani</title>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <a href="http://martani.github.io/Twitter-Archive-Eraser"><h1>Twitter Archive Eraser</h1></a>
+        <p>Delete Your Oldest Tweets Using Twitter Archive Eraser</p>
+
+        <a href="http://martani.github.io/Twitter-Archive-Eraser/#disqus_thread"></a>
+        
+        <p>
+            <a href="faq.html"><b>FAQ</b></a>
+            <br>
+            <a href="tale.html"><b>The Tale</b></a>
+        </p>
+
+        <p class="view"><a href="https://github.com/martani/Twitter-Archive-Eraser">View the Project on GitHub <small>martani/Twitter-Archive-Eraser</small></a></p>
+
+
+        <ul>
+          <li><a href="http://bit.ly/TwitterArchiveEraser">Download <strong>Standalone</strong> version</a></li>
+          <li><a href="http://bit.ly/TwitterArchiveEraserSetup">Download <strong>Installer</strong></a></li>
+          <li><a href="https://github.com/martani/Twitter-Archive-Eraser">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+
+
+<h1><a name="twitter-archive-eraser" class="anchor" href="#twitter-archive-eraser"><span class="octicon octicon-link"></span></a>Twitter Archive Eraser FAQ</h1>
+
+<ul>
+  <li>
+    <h3>
+      Is this a Windows only application?
+    </h3>
+    <p>Yes, it doesn't work on Mac nor Linux.</p>
+  </li>
+
+<li>
+    <h3>
+      Are you planning to port Twitter Archive Eraser to Mac or Linux?
+    </h3>
+<p>No.</p>
+</li>
+<li>
+    <h3>
+      I have issues while authorizing the app with Twitter.
+    </h3>
+<p>For some reason, Twitter Archive Eraser might not be able to open the browser to authorize with Twitter, if you have this issue then run the application as an Administrator.</p>
+</li>
+<li>
+    <h3>
+      How long does it takes to delete all the tweets?
+    </h3>
+<p>A lot! depending on the number of tweets you are trying to delete and your internet speed. You can just run the application and leave it do the work.</p>
+</li>
+<li>
+    <h3>
+      Tweets are deleted but my tweets counter is not going down.
+    </h3>
+<p>This can be caused due to a cached version of twitter.com on your browser or that twitter hasn't updated yet your tweets count. If the issue persists you should contact Twitter @support.</p>
+</li>
+<li>
+    <h3>
+      What does [NOT FOUND!] mean?
+    </h3>
+<p>While deleting tweets, the status [NOT FOUND!] means that the tweet was already deleted at a previous time. Hence, when Twitter Archive Eraser tried to delete it, it was not found.</p>
+</li>
+<li>
+    <h3>
+      Does Twitter Archive Eraser have crapware/spyware/viruses/worms/aliens-from-mars which could hurt my computer?
+    </h3>
+<p>No. You can grab the source code yourself from here, compile and run it 'safely'  yourself.</p>
+</li>
+<li>
+    <h3>
+      I deleted my tweets but changed my mind now, how to get them back?
+    </h3>
+<p>Right !?</p>
+</li>
+</ul>
+
+
+    <!-- LOAD DISQUS WHEN USER SCROLLS DOWN -->
+    
+    <div id="disqus_thread" data-disqus-shortname="martani-net" data-disqus-url="http://martani.github.io/Twitter-Archive-Eraser/"></div>
+    
+    <script type="text/javascript">
+    $(function(){
+    var disqus_div = $("#disqus_thread");
+    if (disqus_div.size() > 0 ) {
+        var ds_loaded = false,
+            top = disqus_div.offset().top, // WHERE TO START LOADING
+            disqus_data = disqus_div.data(),
+            check = function(){
+                if ( !ds_loaded && $(window).scrollTop() + $(window).height() > top ) {
+                    ds_loaded = true;
+                    for (var key in disqus_data) {
+                        if (key.substr(0,6) == 'disqus') {
+                            window['disqus_' + key.replace('disqus','').toLowerCase()] = disqus_data[key];
+                        }
+                    }
+ 
+                    var dsq = document.createElement('script'); 
+                    dsq.type = 'text/javascript';
+                    dsq.async = true;
+                    dsq.src = 'http://' + window.disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                }
+            };
+ 
+        $(window).scroll(check);
+        check();
+        }
+      });
+      </script>
+
+
+      </section>
+      
+      
+    
+      
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/martani">martani</a></p>
+        <p>
+            <img src="https://abs.twimg.com/a/1369885592/images/resources/twitter-bird-light-bgs.png" width="48">
+            <a href="https://twitter.com/martani_net">@martani_net</a>
+        </p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="http://martani.github.io/Twitter-Archive-Eraser/javascripts/scale.fix.js"></script>
+    
+    
+        <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'martani-net'; // required: replace example with your forum shortname
+    //var disqus_url = 'http://www.martani.net/2013/02/wipe-your-oldest-tweets-using-twitter.html';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+    
+    
+  </body>
+</html>
