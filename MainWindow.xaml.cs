@@ -88,8 +88,10 @@ namespace Twitter_Archive_Eraser
             }
             catch (WebException ex)
             {
-                MessageBox.Show("Unable to authroize with Twitter right now. Please check pin number", "Twitter Archive Eraser",
+                /*MessageBox.Show("Unable to authroize with Twitter right now. Please check pin number", "Twitter Archive Eraser",
                     MessageBoxButton.OK, MessageBoxImage.Information);
+                */
+                MessageBox.Show(ex.Message);
 
                 return null;
             }

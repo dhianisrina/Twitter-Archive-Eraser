@@ -34,7 +34,7 @@
             </StackPanel>
             </StackPanel>
         
-            <DataGrid Name="gridCsvFiles" Grid.Row="1" Margin="10"
+            <DataGrid Name="gridFiles" Grid.Row="1" Margin="10"
                       
                       AutoGenerateColumns="False" 
                       CanUserResizeColumns="False"

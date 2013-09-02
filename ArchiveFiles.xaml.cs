@@ -22,12 +22,12 @@ namespace Twitter_Archive_Eraser
     /// </summary>
     public partial class ArchiveFiles : Window
     {
-        ObservableRangeCollection<CsvFile> csvFiles = new ObservableRangeCollection<CsvFile>();
+        ObservableRangeCollection<JsFile> jsFiles = new ObservableRangeCollection<JsFile>();
 
         public ArchiveFiles()
         {
             InitializeComponent();
-            csvFiles.Clear();
+            jsFiles.Clear();
         }
 
         private void btnAddFiles_Click(object sender, RoutedEventArgs e)
@@ -35,7 +35,7 @@ namespace Twitter_Archive_Eraser
             e.Handled = true;
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.DefaultExt = ".js";
-            dlg.Filter = "JS archive files (*.js)|*.js|CSV archive files (*.csv)|*.csv";
+            dlg.Filter = "JS archive files (*.js)|*.js";
             dlg.Multiselect = true;
 
             Nullable<bool> result = dlg.ShowDialog();
@@ -45,19 +45,19 @@ namespace Twitter_Archive_Eraser
                 foreach (var item in dlg.FileNames)
 	            {
                     //if the file is not already present
-                    if(!csvFiles.Any(file => file.Path == item))
-                        csvFiles.Add(new CsvFile() { Path = item, Selected = false });
+                    if(!jsFiles.Any(file => file.Path == item))
+                        jsFiles.Add(new JsFile() { Path = item, Selected = false });
 	            }
             }
 
-            gridCsvFiles.ItemsSource = csvFiles;
+            gridFiles.ItemsSource = jsFiles;
         }
 
         private void btnRemoveFiles_Click(object sender, RoutedEventArgs e)
         {
             e.Handled = true;
-            List<CsvFile> selectedFiles = new List<CsvFile>();
-            foreach (var item in csvFiles)
+            List<JsFile> selectedFiles = new List<JsFile>();
+            foreach (var item in jsFiles)
             {
                 if(item.Selected)
                     selectedFiles.Add(item);
@@ -65,27 +65,27 @@ namespace Twitter_Archive_Eraser
 
             foreach (var item in selectedFiles)
             {
-                csvFiles.Remove(item);    
+                jsFiles.Remove(item);    
             }
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
             e.Handled = true;
-            if (csvFiles.Count == 0)
+            if (jsFiles.Count == 0)
             {
-                MessageBox.Show("Please select at least 1 csv file from the twitter archive", 
+                MessageBox.Show("Please select at least one *.js file from the twitter archive", 
                                 "Twitter Archive Eraser", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
 
             List<string> files = new List<string>();
-            foreach (var item in csvFiles)
+            foreach (var item in jsFiles)
             {
                 files.Add(item.Path);
             }
 
-            Application.Current.Properties["csvFiles"] = files;
+            Application.Current.Properties["jsFiles"] = files;
 
             DeleteTweets page = new DeleteTweets();
             this.Hide();
@@ -97,7 +97,7 @@ namespace Twitter_Archive_Eraser
 
         private void SelectAllCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            foreach (var item in csvFiles)
+            foreach (var item in jsFiles)
             {
                 item.Selected = true;
             }
@@ -105,7 +105,7 @@ namespace Twitter_Archive_Eraser
 
         private void SelectAllCheckBox_UnChecked(object sender, RoutedEventArgs e)
         {
-            foreach (var item in csvFiles)
+            foreach (var item in jsFiles)
             {
                 item.Selected = false;
             }
@@ -124,7 +124,7 @@ namespace Twitter_Archive_Eraser
         }
     }
 
-    public class CsvFile : INotifyPropertyChanged
+    public class JsFile : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
